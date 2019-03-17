@@ -1,19 +1,23 @@
 package com.example.predictor.condition;
 
+import com.example.predictor.prediction.Prediction;
 import com.example.predictor.weather.Weather;
+
+import java.math.BigDecimal;
 
 public class ConditionResult {
 
     private boolean apply;
-    private Weather weather;
+    private Prediction prediction;
+
+
+    public ConditionResult(boolean apply, Prediction prediction) {
+        this.apply = apply;
+        this.prediction = prediction;
+    }
 
     public ConditionResult(boolean apply) {
         this.apply = apply;
-    }
-
-    public ConditionResult(boolean apply, Weather weather) {
-        this.apply = apply;
-        this.weather = weather;
     }
 
     public boolean isApply() {
@@ -24,11 +28,11 @@ public class ConditionResult {
         this.apply = apply;
     }
 
-    public Weather getWeather() {
-        return weather;
+    public Prediction getPrediction() {
+        return prediction;
     }
 
-    public void setWeather(Weather weather) {
-        this.weather = weather;
+    public void setPrediction(Prediction prediction) {
+        this.prediction = prediction;
     }
 }

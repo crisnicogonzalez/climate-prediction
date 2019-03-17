@@ -1,5 +1,6 @@
 package com.example.predictor.condition;
 
+import com.example.predictor.prediction.Prediction;
 import com.example.predictor.system.*;
 import com.example.predictor.util.GeometryUtil;
 import com.example.predictor.weather.Weather;
@@ -27,7 +28,7 @@ public class DroughtCondition extends WeatherCondition {
 
         planetsPositions.add(sunPosition);
         boolean allAreAligned =  geometryUtil.formALine(planetsPositions);
-        return allAreAligned ? new ConditionResult(true, Weather.DROUGHT): new ConditionResult(false,null);
+        return allAreAligned ? new ConditionResult(true, new Prediction(Weather.DROUGHT)): new ConditionResult(false);
     }
 
     public void setGeometryUtil(GeometryUtil geometryUtil) {

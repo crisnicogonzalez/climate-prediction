@@ -1,4 +1,4 @@
-package com.example.predictor;
+package com.example.predictor.prediction;
 
 import com.example.predictor.condition.*;
 import com.example.predictor.system.SolarSystem;
@@ -29,13 +29,13 @@ public class Predictor {
     }
 
 
-    public Weather predict(SolarSystem solarSystem){
+    public Prediction predict(SolarSystem solarSystem){
         final Optional<ConditionResult> maybeConditionResult = conditions.stream()
                 .map(c -> c.meetsConditions(solarSystem))
                 .filter(ConditionResult::isApply).findAny();
         if(maybeConditionResult.isPresent()){
             final ConditionResult conditionResult = maybeConditionResult.get();
-            return conditionResult.getWeather();
+            return conditionResult.getPrediction();
         }else{
             throw new RuntimeException(NO_CONDITION_WAS_MET_MSG);
         }

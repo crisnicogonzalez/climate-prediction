@@ -27,4 +27,7 @@ public class SolarSystem {
     public void setSun(Sun sun) {
         this.sun = sun;
     }
+
+    public void passADay() {
+    }
 }

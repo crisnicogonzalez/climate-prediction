@@ -1,5 +1,6 @@
 package com.example.predictor.condition;
 
+import com.example.predictor.prediction.Prediction;
 import com.example.predictor.system.*;
 import com.example.predictor.util.GeometryUtil;
 import com.example.predictor.weather.Weather;
@@ -30,6 +31,6 @@ public class OptimumWeatherCondition extends WeatherCondition {
         final boolean planetsAreAligned = geometryUtil.formALine(planetsPositions);
         final boolean sunIsAlignedWithPlanes = geometryUtil.formALine(allPositions);
 
-        return planetsAreAligned && !sunIsAlignedWithPlanes ? new ConditionResult(true, OPTIMUM) : new ConditionResult(false);
+        return planetsAreAligned && !sunIsAlignedWithPlanes ? new ConditionResult(true, new Prediction(OPTIMUM)) : new ConditionResult(false);
     }
 }

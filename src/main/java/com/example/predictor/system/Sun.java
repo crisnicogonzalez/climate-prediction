@@ -1,8 +1,13 @@
 package com.example.predictor.system;
 
+import javafx.geometry.Pos;
+
+import java.math.BigDecimal;
+
 public class Sun extends Positionable {
 
-    public Sun(Position position) {
-        super(position);
+
+    public Sun() {
+        super(new Position(BigDecimal.ZERO,BigDecimal.ZERO));
     }
 }
