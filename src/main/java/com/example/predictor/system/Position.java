@@ -3,27 +3,27 @@ package com.example.predictor.system;
 import java.math.BigDecimal;
 
 public class Position {
-    private BigDecimal x;
-    private BigDecimal y;
+    private double x;
+    private double y;
 
-    public Position(BigDecimal x, BigDecimal y) {
+    public Position(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
-    public BigDecimal getX() {
+    public double getX() {
         return x;
     }
 
-    public void setX(BigDecimal x) {
+    public void setX(double x) {
         this.x = x;
     }
 
-    public BigDecimal getY() {
+    public double getY() {
         return y;
     }
 
-    public void setY(BigDecimal y) {
+    public void setY(double y) {
         this.y = y;
     }
 }

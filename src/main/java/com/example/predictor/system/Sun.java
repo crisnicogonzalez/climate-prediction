@@ -8,6 +8,6 @@ public class Sun extends Positionable {
 
 
     public Sun() {
-        super(new Position(BigDecimal.ZERO,BigDecimal.ZERO));
+        super(new Position(0,0));
     }
 }

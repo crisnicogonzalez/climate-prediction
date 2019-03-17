@@ -1,8 +1,5 @@
 package com.example.predictor.system;
 
-import java.math.BigDecimal;
-
-import static java.math.BigDecimal.ZERO;
 
 public enum Planet {
 
@@ -14,7 +11,7 @@ public enum Planet {
     private Position position;
 
     Planet(Integer angularVelocity, Integer distanceSun){
-        final Position position = new Position(ZERO,BigDecimal.valueOf(distanceSun));
+        final Position position = new Position(0,distanceSun);
         this.angularVelocity = angularVelocity;
         this.position = position;
     }
