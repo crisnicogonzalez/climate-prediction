@@ -1,9 +1,6 @@
 package com.example.predictor.condition;
 
 import com.example.predictor.prediction.Prediction;
-import com.example.predictor.weather.Weather;
-
-import java.math.BigDecimal;
 
 public class ConditionResult {
 
