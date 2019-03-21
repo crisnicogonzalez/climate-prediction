@@ -2,6 +2,7 @@ package com.example.predictor.util;
 
 
 import com.example.predictor.system.Position;
+import javafx.geometry.Pos;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -57,6 +58,36 @@ public class GeometryUtilTest {
         final boolean result = target.formALine(positions);
         Assert.assertTrue(result);
     }
+
+    @Test
+    public void testFormATriangleShouldReturnFalseWhenThePositionsAreFromALine(){
+        final List<Position> positions = this.generatePoints(2,3,3);
+
+        final Position p1 = positions.get(0);
+        final Position p2 = positions.get(1);
+        final Position p3 = positions.get(2);
+
+        final boolean result = target.formATriangle(p1,p2,p3);
+
+        Assert.assertFalse(result);
+    }
+
+    @Test
+    public void testFormATriangleShouldReturnTrueWhenAPointIsNotFromTheLine(){
+        final List<Position> positions = this.generatePoints(2,3,3);
+
+        final Position p1 = positions.get(0);
+        p1.setX(p1.getX() + 1);
+
+        final Position p2 = positions.get(1);
+
+        final Position p3 = positions.get(2);
+
+        final boolean result = target.formATriangle(p1,p2,p3);
+        Assert.assertTrue(result);
+    }
+
+
 
 
 
