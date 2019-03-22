@@ -7,15 +7,19 @@ import com.predictor.system.Position;
 import com.predictor.system.SolarSystem;
 import com.predictor.system.Sun;
 import com.predictor.weather.Weather;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+@Component
 public class RainCondition extends WeatherCondition {
+
 
     private GeometryUtil geometryUtil;
 
+    @Autowired
     public RainCondition(GeometryUtil geometryUtil) {
         this.geometryUtil = geometryUtil;
     }

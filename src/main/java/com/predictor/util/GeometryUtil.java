@@ -3,12 +3,15 @@ package com.predictor.util;
 import com.predictor.system.Position;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static java.lang.Math.sqrt;
 
+
+@Component
 public class GeometryUtil {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GeometryUtil.class);

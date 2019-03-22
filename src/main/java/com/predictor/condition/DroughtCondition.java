@@ -1,7 +1,6 @@
 package com.predictor.condition;
 
 import com.predictor.prediction.Prediction;
-import com.example.predictor.system.*;
 import com.predictor.util.GeometryUtil;
 import com.predictor.weather.Weather;
 import com.predictor.system.Planet;
@@ -9,12 +8,14 @@ import com.predictor.system.Position;
 import com.predictor.system.SolarSystem;
 import com.predictor.system.Sun;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+@Component
 public class DroughtCondition extends WeatherCondition {
+
 
     private GeometryUtil geometryUtil;
 

@@ -5,12 +5,15 @@ import com.predictor.system.SolarSystem;
 import com.predictor.system.Sun;
 import com.predictor.weather.Weather;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
 
+
+@Component
 public class PredictionSystem {
 
     @Autowired
