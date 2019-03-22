@@ -1,6 +1,5 @@
 package com.predictor.prediction;
 
-import com.example.predictor.condition.*;
 import com.predictor.condition.*;
 import com.predictor.system.SolarSystem;
 import org.springframework.beans.factory.annotation.Autowired;

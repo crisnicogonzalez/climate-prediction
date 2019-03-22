@@ -1,7 +1,6 @@
 package com.predictor.condition;
 
 import com.predictor.prediction.Prediction;
-import com.example.predictor.system.*;
 import com.predictor.util.GeometryUtil;
 import com.predictor.system.Planet;
 import com.predictor.system.Position;
