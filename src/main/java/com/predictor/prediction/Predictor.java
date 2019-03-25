@@ -27,7 +27,7 @@ public class Predictor {
         this.conditions = conditions;
     }
 
-    public Prediction predict(SolarSystem solarSystem){
+    public Prediction predict(SolarSystem solarSystem,int day){
         ConditionResult maybeConditionResult = conditions.stream()
                 .map(c -> c.meetsConditions(solarSystem))
                 .filter(ConditionResult::isApply)

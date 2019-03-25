@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 public class DayPredictionDAO {
 
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    //@Autowired
+    //private SessionFactory sessionFactory;
 
     public void save(DayPrediction dayPrediction){}
 
@@ -24,8 +24,8 @@ public class DayPredictionDAO {
      * @return prediction of day
      * */
     public DayPrediction get(int day){
-        final Session currentSession = this.sessionFactory.getCurrentSession();
-        Query queryResult = currentSession.createQuery("from");
+        //final Session currentSession = this.sessionFactory.getCurrentSession();
+        //Query queryResult = currentSession.createQuery("from");
         return new DayPrediction(day, Weather.DROUGHT,10);
     }
 }
