@@ -1,10 +1,16 @@
 package com.predictor.prediction;
 
 import com.predictor.weather.Weather;
+import org.hibernate.annotations.Immutable;
+import org.hibernate.annotations.Table;
 
+import javax.persistence.Id;
 
+@Immutable
+@Table(appliesTo = "DayPrediction")
 public class DayPrediction {
 
+    @Id
     private int day;
     private Weather weather;
     private double intensity;
