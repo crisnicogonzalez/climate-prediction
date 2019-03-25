@@ -19,7 +19,7 @@ public class PredictorApplication {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(PredictorApplication.class);
 	private static final String APP_PATH_NAME = "/predictor-system/*";
-
+	private static final int DEFAULT_PORT = 8081;
 
 	public static void main(String[] args) {
 		LOGGER.info("Starting application ...");
@@ -31,7 +31,7 @@ public class PredictorApplication {
 			final WebAppContext handler = new WebAppContext();
 			handler.addServlet(new ServletHolder(dispatcherServlet), APP_PATH_NAME);
 			handler.setResourceBase("src/main/resources");
-			final Server server = new Server(8081);
+			final Server server = new Server(DEFAULT_PORT);
 			server.setHandler(handler);
 
 			server.start();
