@@ -1,6 +1,7 @@
 package com.predictor.condition;
 
 import com.predictor.prediction.Prediction;
+import com.predictor.prediction.predictionCounter.Counter;
 import com.predictor.util.GeometryUtil;
 import com.predictor.system.Planet;
 import com.predictor.system.Position;
@@ -55,6 +56,11 @@ public class RainCondition extends WeatherCondition {
         final Position p2 = planetsPositions.get(1);
         final Position p3 = planetsPositions.get(2);
         return new Prediction(Weather.RAIN,this.calculateIntensity(p1,p2,p3));
+    }
+
+    @Override
+    public void accept(Counter counter) {
+        counter.visit(this);
     }
 
 

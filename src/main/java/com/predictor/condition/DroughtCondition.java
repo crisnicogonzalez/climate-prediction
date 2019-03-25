@@ -1,6 +1,7 @@
 package com.predictor.condition;
 
 import com.predictor.prediction.Prediction;
+import com.predictor.prediction.predictionCounter.Counter;
 import com.predictor.util.GeometryUtil;
 import com.predictor.weather.Weather;
 import com.predictor.system.Planet;
@@ -40,5 +41,11 @@ public class DroughtCondition extends WeatherCondition {
     @Override
     public Prediction getPrediction(SolarSystem system,int day) {
         return new Prediction(Weather.DROUGHT);
+    }
+
+
+    @Override
+    public void accept(Counter counter) {
+        counter.visit(this);
     }
 }

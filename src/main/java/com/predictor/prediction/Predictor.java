@@ -27,10 +27,9 @@ public class Predictor {
         this.conditions = conditions;
     }
 
-    public Prediction predict(SolarSystem solarSystem,int day){
+    public WeatherCondition predict(SolarSystem solarSystem,int day){
         return  conditions.stream()
-                .filter( c -> c.meetsConditions(solarSystem) )
-                .map(c -> c.getPrediction(solarSystem))
+                .filter( c -> c.meetsConditions(solarSystem,day) )
                 .findAny()
                 .orElseThrow(() -> new RuntimeException(NO_CONDITION_WAS_MET_MSG));
         }
