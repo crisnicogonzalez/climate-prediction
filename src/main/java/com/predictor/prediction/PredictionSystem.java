@@ -19,11 +19,14 @@ public class PredictionSystem {
     @Autowired
     private Predictor predictor;
     private static final Sun SUN = new Sun();
-    private static final List<Planet> PLANETS = newArrayList(Planet.VULCANO, Planet.BETASOID, Planet.FERENGI);
+    private List<Planet> planets;
+
+
 
 
     public void predictWeatherForDays(Integer quantityOfDays){
-        final SolarSystem solarSystem = new SolarSystem(PLANETS,SUN);
+        final List<Planet> planets = newArrayList(Planet.BETASOID,Planet.FERENGI,Planet.VULCANO);
+        final SolarSystem solarSystem = new SolarSystem(planets,new Sun());
         int quantityOfDroughtDays = 0;
         int quantityOfRainDays = 0;
         int quantityOfOptimumDays = 0;
@@ -33,7 +36,7 @@ public class PredictionSystem {
 
         for (int day = 1;day <= quantityOfDays;day++){
             solarSystem.passADay();
-            final Prediction prediction = predictor.predict(solarSystem);
+            final Prediction prediction = predictor.predict(solarSystem,0);
             final Weather weatherPredicted = prediction.getWeather();
             switch (weatherPredicted){
                 case DROUGHT:

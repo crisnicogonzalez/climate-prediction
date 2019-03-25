@@ -28,12 +28,11 @@ public class Predictor {
     }
 
     public Prediction predict(SolarSystem solarSystem,int day){
-        ConditionResult maybeConditionResult = conditions.stream()
-                .map(c -> c.meetsConditions(solarSystem))
-                .filter(ConditionResult::isApply)
+        return  conditions.stream()
+                .filter( c -> c.meetsConditions(solarSystem) )
+                .map(c -> c.getPrediction(solarSystem))
                 .findAny()
                 .orElseThrow(() -> new RuntimeException(NO_CONDITION_WAS_MET_MSG));
-        return maybeConditionResult.getPrediction();
         }
 }
 

@@ -24,8 +24,14 @@ public class RainCondition extends WeatherCondition {
         this.geometryUtil = geometryUtil;
     }
 
+
+
+    /**
+     * This condition is fulfilled when the planets form a triangle and the sun is inside the same
+     *
+     * */
     @Override
-    public ConditionResult meetsConditions(SolarSystem system) {
+    public boolean meetsConditions(SolarSystem system,int day) {
         final List<Planet> planets = system.getPlanets();
         final Sun sun = system.getSun();
         final List<Position> planetsPositions = planets.stream().map(Planet::getPosition).collect(Collectors.toList());
@@ -37,7 +43,18 @@ public class RainCondition extends WeatherCondition {
 
         final boolean planetsFormATriangle = geometryUtil.formATriangle(p1,p2,p3);
         final boolean sunIsInsideOfTriangle = geometryUtil.pointInsideOfTriangle(p1,p2,p3,sun.getPosition());
-        return  planetsFormATriangle && sunIsInsideOfTriangle ? new ConditionResult(true, new Prediction(Weather.RAIN,this.calculateIntensity(p1,p2,p3))) : new ConditionResult(false);
+        return  planetsFormATriangle && sunIsInsideOfTriangle;
+    }
+
+    @Override
+    public Prediction getPrediction(SolarSystem system,int day){
+        final List<Planet> planets = system.getPlanets();
+        final List<Position> planetsPositions = planets.stream().map(Planet::getPosition).collect(Collectors.toList());
+
+        final Position p1 = planetsPositions.get(0);
+        final Position p2 = planetsPositions.get(1);
+        final Position p3 = planetsPositions.get(2);
+        return new Prediction(Weather.RAIN,this.calculateIntensity(p1,p2,p3));
     }
 
 

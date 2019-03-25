@@ -26,8 +26,11 @@ public class OptimumWeatherCondition extends WeatherCondition {
         this.geometryUtil = geometryUtil;
     }
 
+    /**
+     * This condition is fulfilled when the planets are aligned but the sun is not aligned with them
+     * */
     @Override
-    public ConditionResult meetsConditions(SolarSystem system) {
+    public boolean meetsConditions(SolarSystem system,int day) {
         final Sun sun = system.getSun();
         final List<Planet> planets = system.getPlanets();
         final List<Position> planetsPositions = planets.stream().map(Planet::getPosition).collect(Collectors.toList());
@@ -36,7 +39,12 @@ public class OptimumWeatherCondition extends WeatherCondition {
         final boolean planetsAreAligned = geometryUtil.formALine(planetsPositions);
         final boolean sunIsAlignedWithPlanes = geometryUtil.formALine(allPositions);
 
-        return planetsAreAligned && !sunIsAlignedWithPlanes ? new ConditionResult(true, new Prediction(Weather.OPTIMUM)) : new ConditionResult(false);
+        return planetsAreAligned && !sunIsAlignedWithPlanes;
+    }
+
+    @Override
+    public Prediction getPrediction(SolarSystem system,int day) {
+        return new Prediction(Weather.OPTIMUM);
     }
 
 

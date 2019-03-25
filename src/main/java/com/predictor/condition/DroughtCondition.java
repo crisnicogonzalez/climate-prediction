@@ -24,19 +24,21 @@ public class DroughtCondition extends WeatherCondition {
         this.geometryUtil = geometryUtil;
     }
 
+    /**
+     * This condition is fulfilled when both the planets and the sun are aligned
+     */
     @Override
-    public ConditionResult meetsConditions(SolarSystem system) {
+    public boolean meetsConditions(SolarSystem system,int day) {
         final Sun sun = system.getSun();
         final List<Planet> planets = system.getPlanets();
         final List<Position> planetsPositions = planets.stream().map(Planet::getPosition).collect(Collectors.toList());
         final Position sunPosition = sun.getPosition();
-
         planetsPositions.add(sunPosition);
-        boolean allAreAligned =  geometryUtil.formALine(planetsPositions);
-        return allAreAligned ? new ConditionResult(true, new Prediction(Weather.DROUGHT)): new ConditionResult(false);
+        return geometryUtil.formALine(planetsPositions);
     }
 
-    public void setGeometryUtil(GeometryUtil geometryUtil) {
-        this.geometryUtil = geometryUtil;
+    @Override
+    public Prediction getPrediction(SolarSystem system,int day) {
+        return new Prediction(Weather.DROUGHT);
     }
 }
