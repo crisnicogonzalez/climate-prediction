@@ -15,6 +15,10 @@ public class DayPrediction {
     private Weather weather;
     private double intensity;
 
+
+    public DayPrediction() {
+    }
+
     public DayPrediction(int day, Weather weather, double intensity) {
         this.day = day;
         this.weather = weather;

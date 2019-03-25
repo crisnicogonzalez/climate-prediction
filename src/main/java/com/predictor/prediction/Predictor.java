@@ -8,15 +8,14 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static com.google.common.collect.ImmutableList.of;
 
 
 @Component
 public class Predictor {
-    private RainCondition rainCondition;
-    private OptimumWeatherCondition optimumWeatherCondition;
-    private DroughtCondition droughtCondition;
+
 
     private List<? extends WeatherCondition> conditions;
 
@@ -24,27 +23,17 @@ public class Predictor {
 
 
     @Autowired
-    public Predictor(RainCondition rainCondition, OptimumWeatherCondition optimumWeatherCondition, DroughtCondition droughtCondition) {
-        this.rainCondition = rainCondition;
-        this.optimumWeatherCondition = optimumWeatherCondition;
-        this.droughtCondition = droughtCondition;
+    public Predictor(List<WeatherCondition> conditions) {
+        this.conditions = conditions;
     }
-
-    @PostConstruct
-    public void init(){
-        conditions = of(rainCondition,optimumWeatherCondition,droughtCondition);
-    }
-
 
     public Prediction predict(SolarSystem solarSystem){
-        final Optional<ConditionResult> maybeConditionResult = conditions.stream()
+        ConditionResult maybeConditionResult = conditions.stream()
                 .map(c -> c.meetsConditions(solarSystem))
-                .filter(ConditionResult::isApply).findAny();
-        if(maybeConditionResult.isPresent()){
-            final ConditionResult conditionResult = maybeConditionResult.get();
-            return conditionResult.getPrediction();
-        }else{
-            throw new RuntimeException(NO_CONDITION_WAS_MET_MSG);
+                .filter(ConditionResult::isApply)
+                .findAny()
+                .orElseThrow(() -> new RuntimeException(NO_CONDITION_WAS_MET_MSG));
+        return maybeConditionResult.getPrediction();
         }
-    }
 }
+
