@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.DispatcherServlet;
 
 import static java.util.EnumSet.of;
+import static org.eclipse.jetty.util.StringUtil.isNotBlank;
 
 public class PredictorApplication {
 
@@ -27,7 +28,8 @@ public class PredictorApplication {
 			final WebAppContext handler = new WebAppContext();
 			handler.addServlet(new ServletHolder(dispatcherServlet), APP_PATH_NAME);
 			handler.setResourceBase("src/main/resources");
-			final Server server = new Server(DEFAULT_PORT);
+			final Integer port = args.length >= 1 && isNotBlank(args[0]) ? Integer.valueOf(args[0]) : DEFAULT_PORT;
+			final Server server = new Server(port);
 			server.setHandler(handler);
 
 			server.start();
