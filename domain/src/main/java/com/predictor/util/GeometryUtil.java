@@ -72,6 +72,13 @@ public class GeometryUtil {
     }
 
 
+    /**
+     *
+     * @param p1,p2 and p3 are the vertices of the triangle
+     * @param p is the point you want to find out if it is inside the triangle
+     * @return true if the point is inside or the edge another case false
+     * */
+
     public boolean pointInsideOfTriangle(Position p1,Position p2,Position p3,Position p){
         LOGGER.debug(POSITION_INSIDE_OF_TRIANGLE_MSG,p1,p2,p3,p);
         final boolean d1 = this.calculateOrientation(p,p1,p2);

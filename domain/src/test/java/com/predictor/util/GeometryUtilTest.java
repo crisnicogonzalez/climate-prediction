@@ -87,6 +87,38 @@ public class GeometryUtilTest {
     }
 
 
+    @Test
+    public void testPointInsideOfTriangleShouldReturnTrue(){
+        final Position p1 = new Position(0,0);
+        final Position p2 = new Position(1,0);
+        final Position p3 = new Position(0,1);
+        final Position insidePosition = new Position(0.5,0.5);
+
+        Assert.assertTrue(target.pointInsideOfTriangle(p1,p2,p3,insidePosition));
+    }
+
+    @Test
+    public void testPointInsideOfTriangleShouldReturnFalse(){
+        final Position p1 = new Position(0,0);
+        final Position p2 = new Position(1,0);
+        final Position p3 = new Position(0,1);
+        final Position insidePosition = new Position(1,1);
+
+        Assert.assertFalse(target.pointInsideOfTriangle(p1,p2,p3,insidePosition));
+    }
+
+
+    @Test
+    public void testPointInsideOfTriangleShouldReturnFalseBecauseThePointAreTheEdge(){
+        final Position p1 = new Position(0,0);
+        final Position p2 = new Position(1,0);
+        final Position p3 = new Position(0,1);
+        final Position insidePosition = new Position(0,1);
+
+        Assert.assertTrue(target.pointInsideOfTriangle(p1,p2,p3,insidePosition));
+    }
+
+
 
 
 
