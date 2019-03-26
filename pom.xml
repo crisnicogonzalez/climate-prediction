@@ -6,6 +6,7 @@
 	<artifactId>predictor</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>predictor</name>
+	<packaging>pom</packaging>
 	<description>Resolución de ejercicio de mercado libre</description>
 
 	<properties>
@@ -121,4 +122,9 @@
 		</plugins>
 	</build>
 
+
+	<modules>
+		<module>domain</module>
+		<module>com.predictor.service</module>
+	</modules>
 </project>
