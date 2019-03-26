@@ -29,6 +29,7 @@ public class DroughtCondition extends WeatherCondition {
      */
     @Override
     public boolean meetsConditions(SolarSystem system,int day) {
+
         final Sun sun = system.getSun();
         final List<Planet> planets = system.getPlanets();
         final List<Position> planetsPositions = planets.stream().map(Planet::getPosition).collect(Collectors.toList());
