@@ -2,6 +2,8 @@ package com.predictor.prediction;
 
 import com.predictor.condition.RainCondition;
 import com.predictor.condition.WeatherCondition;
+import com.predictor.report.Report;
+import com.predictor.report.ReportBuilder;
 import com.predictor.universe.Planet;
 import com.predictor.universe.SolarSystem;
 import com.predictor.universe.Sun;
@@ -24,6 +26,8 @@ public class PredictionSystem {
     private static final Sun SUN = new Sun();
     private List<Planet> planets;
     private static final Logger LOGGER = LoggerFactory.getLogger(PredictionSystem.class);
+    @Autowired
+    private ReportBuilder builder;
 
 
 
@@ -39,8 +43,11 @@ public class PredictionSystem {
         final List<Planet> planets = newArrayList(Planet.BETASOID,Planet.FERENGI,Planet.VULCANO);
         final SolarSystem solarSystem = new SolarSystem(planets,new Sun());
         for (int day = 1;day <= quantityOfDays;day++){
-            final WeatherCondition prediction = predictor.predict(solarSystem,day);
-            LOGGER.info("For day {} the weather applied is {}",day,prediction.getPrediction(solarSystem,day).getWeather());
+            final WeatherCondition predictionFulfilled = predictor.predict(solarSystem,day);
+            final Prediction prediction = predictionFulfilled.getPrediction(solarSystem,day);
+            LOGGER.info("For day {} the weather applied is {}",day,prediction.getWeather());
+            builder.register(predictionFulfilled,prediction);
         }
+        final Report report = builder.doReport();
     }
 }
