@@ -1,1 +1,1 @@
-web: java -cp target/classes:"target/dependency/*" PredictorApplication
+web: java -jar target/predictor-1.0-SNAPSHOT-jar-with-dependencies.jar
