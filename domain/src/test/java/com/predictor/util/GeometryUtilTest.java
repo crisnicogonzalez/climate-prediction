@@ -120,6 +120,17 @@ public class GeometryUtilTest {
 
 
 
+    @Test
+    public void testCalculatePerimeterOfTriangleShouldReturnCorrectly(){
+        final Position p1 = new Position(0,0);
+        final Position p2 = new Position(1,0);
+        final Position p3 = new Position(0,1);
+
+        final double difference = Math.abs(target.calculatePerimeterOfTriangle(p1,p2,p3) - 3.4142);
+        Assert.assertTrue(difference < 0.001);
+
+    }
+
 
 
     private List<Position> generatePoints(double m,double b,int quantityPoints){
