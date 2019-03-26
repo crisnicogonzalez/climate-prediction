@@ -1,8 +1,8 @@
 package com.predictor.controller;
 
 
-import com.predictor.request.ForecastPredictionRequestDTO;
 import com.predictor.dao.DayPrediction;
+import com.predictor.request.ForecastPredictionRequestDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
