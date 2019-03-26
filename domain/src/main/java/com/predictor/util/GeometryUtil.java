@@ -19,6 +19,9 @@ public class GeometryUtil {
     private static final String CALCULATE_SLOPE_OF_POSITIONS_MSG = "P1 {} and P2 {}";
     private final static double EPSILON = .00001;
     private static final String CANNOT_CALCULATE_PERIMETER_MSG = "Can not calculate the perimeter of the points  p1: {} p2: {} p3: {}";
+    private static final String POSITIONS_FORM_A_TRIANGLE_MSG = "Calculate if the points form a triangle  p1: {} p2: {} p3: {}";
+    private static final String POSITION_INSIDE_OF_TRIANGLE_MSG = "Calculate if the point is inside of a triangle  p1: {} p2: {} p3: {} p4:{}";
+
 
 
     /**
@@ -33,7 +36,7 @@ public class GeometryUtil {
         final double slope = this.calculateSlope(pivot,positions.get(1));
         return positions.subList(1,positions.size()).stream().allMatch( p-> {
             final double slopeCalculated = this.calculateSlope(pivot,p);
-            LOGGER.info(COMPARE_SLOPE_MSG,slope,slopeCalculated);
+            LOGGER.debug(COMPARE_SLOPE_MSG,slope,slopeCalculated);
             return this.compareDouble(slope,slopeCalculated);
         });
     }
@@ -43,7 +46,7 @@ public class GeometryUtil {
     }
 
     private double calculateSlope(Position p1, Position p2) {
-        LOGGER.info(CALCULATE_SLOPE_OF_POSITIONS_MSG,p1,p2);
+        LOGGER.debug(CALCULATE_SLOPE_OF_POSITIONS_MSG,p1,p2);
         final double x1 = p1.getX();
         final double y1 = p1.getY();
 
@@ -59,18 +62,18 @@ public class GeometryUtil {
     /**
      *
      * @param p1,p2,p3 are the vertices of the triangle
-     * @pre planetsPositions size should be three
+     * @pre planetsPositions size's should be three
      * @return if the planetsPositions form a triangle return true else false.
      * If planetsPositions size's less of three return false
      * */
     public boolean formATriangle(Position p1,Position p2,Position p3){
+        LOGGER.debug(POSITIONS_FORM_A_TRIANGLE_MSG,p1,p2,p3);
         return !this.formALine(newArrayList(p1,p2,p3));
     }
 
 
     public boolean pointInsideOfTriangle(Position p1,Position p2,Position p3,Position p){
-
-
+        LOGGER.debug(POSITION_INSIDE_OF_TRIANGLE_MSG,p1,p2,p3,p);
         final boolean d1 = this.calculateOrientation(p,p1,p2);
         final boolean d2 = this.calculateOrientation(p,p2,p3);
         final boolean d3 = this.calculateOrientation(p,p3,p1);

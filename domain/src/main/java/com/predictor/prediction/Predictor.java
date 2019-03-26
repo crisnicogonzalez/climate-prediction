@@ -14,10 +14,10 @@ import static com.google.common.collect.ImmutableList.of;
 public class Predictor {
 
 
-    private List<? extends WeatherCondition> conditions;
+    private List<WeatherCondition> conditions;
 
     private static final String NO_CONDITION_WAS_MET_MSG = "no condition was met";
-
+    private static final WeatherCondition DEFAULT_CONDITION = new NoOneCondition();
 
     @Autowired
     public Predictor(List<WeatherCondition> conditions) {
@@ -26,9 +26,9 @@ public class Predictor {
 
     public WeatherCondition predict(SolarSystem solarSystem,int day){
         return  conditions.stream()
-                .filter( c -> c.meetsConditions(solarSystem,day) )
+                .filter( c -> c.meetsConditions(solarSystem,day))
                 .findAny()
-                .orElseThrow(() -> new RuntimeException(NO_CONDITION_WAS_MET_MSG));
+                .orElse(DEFAULT_CONDITION);
         }
 }
 

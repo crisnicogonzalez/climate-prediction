@@ -7,6 +7,8 @@ import com.predictor.universe.Position;
 import com.predictor.universe.SolarSystem;
 import com.predictor.universe.Sun;
 import com.predictor.weather.Weather;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +20,9 @@ public class RainCondition extends WeatherCondition {
 
 
     private GeometryUtil geometryUtil;
+    private static final Logger LOGGER = LoggerFactory.getLogger(RainCondition.class);
+
+
 
     @Autowired
     public RainCondition(GeometryUtil geometryUtil) {
@@ -32,9 +37,12 @@ public class RainCondition extends WeatherCondition {
      * */
     @Override
     public boolean meetsConditions(SolarSystem system,int day) {
+
+        LOGGER.info("Calculate if day {} meets conditions",day);
+
         final List<Planet> planets = system.getPlanets();
         final Sun sun = system.getSun();
-        final List<Position> planetsPositions = planets.stream().map(Planet::getPosition).collect(Collectors.toList());
+        final List<Position> planetsPositions = planets.stream().map(p -> p.getPositionForDay(day)).collect(Collectors.toList());
 
         final Position p1 = planetsPositions.get(0);
         final Position p2 = planetsPositions.get(1);

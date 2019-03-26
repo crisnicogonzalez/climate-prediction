@@ -1,12 +1,16 @@
 package com.predictor.prediction;
 
+import com.predictor.condition.RainCondition;
 import com.predictor.condition.WeatherCondition;
 import com.predictor.universe.Planet;
 import com.predictor.universe.SolarSystem;
 import com.predictor.universe.Sun;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
@@ -19,17 +23,24 @@ public class PredictionSystem {
     private Predictor predictor;
     private static final Sun SUN = new Sun();
     private List<Planet> planets;
+    private static final Logger LOGGER = LoggerFactory.getLogger(PredictionSystem.class);
+
 
 
     public PredictionSystem() {
+    }
+
+    @PostConstruct
+    public void init(){
+        this.predictWeatherForDays(100);
     }
 
     public void predictWeatherForDays(Integer quantityOfDays){
         final List<Planet> planets = newArrayList(Planet.BETASOID,Planet.FERENGI,Planet.VULCANO);
         final SolarSystem solarSystem = new SolarSystem(planets,new Sun());
         for (int day = 1;day <= quantityOfDays;day++){
-            solarSystem.passADay();
             final WeatherCondition prediction = predictor.predict(solarSystem,day);
+            LOGGER.info("For day {} the weather applied is {}",day,prediction.getPrediction(solarSystem,day).getWeather());
         }
     }
 }
