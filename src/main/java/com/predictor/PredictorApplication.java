@@ -37,7 +37,7 @@ public class PredictorApplication {
 			LOGGER.info("Application was shutdown!");
 
 		}catch (Exception e){
-			LOGGER.error("A error happened");
+			LOGGER.error("A error happened",e);
 		}
 	}
 
