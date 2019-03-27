@@ -4,6 +4,7 @@ import com.predictor.dao.entity.Forecast;
 import com.predictor.dao.ForecastDAO;
 import com.predictor.report.ReportBuilder;
 import com.predictor.universe.SolarSystem;
+import com.predictor.weather.Weather;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,10 +45,15 @@ public class PredictionSystem {
     @Async
     public void predictWeatherForDays(Integer quantityOfDays){
         for (int day = 1 ; day <= quantityOfDays; day++){
-            final WeatherPrediction weatherPredicted = predictor.predict(solarSystem,day);
-            LOGGER.info("For day {} the weather applied is {}",day, weatherPredicted.getWeather());
-            builder.register(weatherPredicted,day);
-            forecastDAO.save(new Forecast(day, weatherPredicted.getWeather()));
+            try{
+                final WeatherPrediction weatherPredicted = predictor.predict(solarSystem,day);
+                LOGGER.info("For day {} the weather applied is {}",day, weatherPredicted.getWeather());
+                builder.register(weatherPredicted,day);
+                forecastDAO.save(new Forecast(day, weatherPredicted.getWeather()));
+            }catch (Exception e){
+                forecastDAO.save(new Forecast(day, Weather.INCALCULABLE));
+            }
+
         }
         builder.showReport();
     }
