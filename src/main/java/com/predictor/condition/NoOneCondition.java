@@ -1,6 +1,6 @@
 package com.predictor.condition;
 
-import com.predictor.prediction.Prediction;
+import com.predictor.prediction.WeatherPrediction;
 import com.predictor.universe.SolarSystem;
 import com.predictor.weather.Weather;
 import org.slf4j.Logger;
@@ -19,7 +19,7 @@ public class NoOneCondition extends WeatherCondition {
     }
 
     @Override
-    public Prediction getPrediction(SolarSystem system, int day) {
-        return new Prediction(Weather.UNKNOWN);
+    public WeatherPrediction getPrediction(SolarSystem system, int day) {
+        return new WeatherPrediction(Weather.UNKNOWN);
     }
 }

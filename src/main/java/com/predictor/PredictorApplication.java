@@ -20,7 +20,6 @@ public class PredictorApplication {
 	public static void main(String[] args) {
 		LOGGER.info("Starting application ...");
 		try{
-			//PropertyConfigurator.configure("classpath:log4j.properties");
 			final DispatcherServlet dispatcherServlet = new DispatcherServlet();
 			dispatcherServlet.setContextConfigLocation("classpath:application-context.xml");
 

@@ -5,7 +5,7 @@ public class Report {
     private int droughtQuantity;
     private int optimumWeatherQuantity;
     private int rainQuantity;
-    private int moreRainDay;
+    private long moreRainDay;
 
     public void setDroughtQuantity(int droughtQuantity) {
         this.droughtQuantity = droughtQuantity;
@@ -19,7 +19,7 @@ public class Report {
         this.rainQuantity = rainQuantity;
     }
 
-    public void setMoreRainDay(int moreRainDay) {
+    public void setMoreRainDay(long moreRainDay) {
         this.moreRainDay = moreRainDay;
     }
 

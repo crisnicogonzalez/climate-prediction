@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 import static com.google.common.collect.ImmutableList.of;
+import static com.predictor.weather.Weather.UNKNOWN;
 
 
 @Component
@@ -24,11 +25,12 @@ public class Predictor {
         this.conditions = conditions;
     }
 
-    public WeatherCondition predict(SolarSystem solarSystem,int day){
+    public WeatherPrediction predict(SolarSystem solarSystem, int day){
         return  conditions.stream()
                 .filter( c -> c.meetsConditions(solarSystem,day))
+                .map( c -> c.getPrediction(solarSystem,day))
                 .findAny()
-                .orElse(DEFAULT_CONDITION);
+                .orElse(new WeatherPrediction(UNKNOWN));
         }
 }
 

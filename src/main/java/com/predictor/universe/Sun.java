@@ -1,5 +1,9 @@
 package com.predictor.universe;
 
+
+import org.springframework.stereotype.Component;
+
+@Component
 public class Sun extends Positionable {
 
 

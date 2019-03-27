@@ -1,7 +1,6 @@
 package com.predictor.universe;
 
 
-import com.predictor.condition.OptimumWeatherCondition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +19,7 @@ public enum Planet {
     /*initial position*/
     private Position position;
     private int radio;
-    private static final int INITIAL_ANGLE = 90;
+
 
     Planet(Integer angularVelocity, Integer distanceSun){
         final Position position = new Position(0,distanceSun);
@@ -29,20 +28,9 @@ public enum Planet {
         radio = distanceSun;
     }
 
-    public Integer getAngularVelocity() {
-        return angularVelocity;
-    }
-
-    public void setAngularVelocity(Integer angularVelocity) {
-        this.angularVelocity = angularVelocity;
-    }
-
-    public Position getPosition() {
-        return position;
-    }
 
     public Position getPositionForDay(int day){
-        final int currentAngle = this.angularVelocity*day + INITIAL_ANGLE;
+        final int currentAngle = this.angularVelocity*day;
         final double x = Math.cos(Math.toRadians(currentAngle))*this.radio;
         final double y = Math.sin(Math.toRadians(currentAngle))*this.radio;
         return new Position(x,y);

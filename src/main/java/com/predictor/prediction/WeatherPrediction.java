@@ -2,16 +2,16 @@ package com.predictor.prediction;
 
 import com.predictor.weather.Weather;
 
-public class Prediction {
+public class WeatherPrediction {
     private Weather weather;
     private double intensity;
 
-    public Prediction(Weather weather, double intensity) {
+    public WeatherPrediction(Weather weather, double intensity) {
         this.weather = weather;
         this.intensity = intensity;
     }
 
-    public Prediction(Weather weather) {
+    public WeatherPrediction(Weather weather) {
         this.weather = weather;
     }
 

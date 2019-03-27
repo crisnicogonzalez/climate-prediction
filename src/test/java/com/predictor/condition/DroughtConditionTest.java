@@ -40,7 +40,7 @@ public class DroughtConditionTest {
 
     @Test
     public void testMeetsConditionsForAlignedSolarSystem(){
-        final SolarSystem solarSystem = new SolarSystem(this.planes,this.sun);
+        final SolarSystem solarSystem = new SolarSystem();
 
         when(geometryUtil.formALine(Mockito.anyListOf(Position.class))).thenReturn(true);
         target.getPrediction(solarSystem,0);
@@ -51,7 +51,7 @@ public class DroughtConditionTest {
 
     @Test
     public void testMeetsConditionShouldReturnFalseSWhenTheSolarSystemIsNotAligned(){
-        final SolarSystem solarSystem = new SolarSystem(this.planes,this.sun);
+        final SolarSystem solarSystem = new SolarSystem();
         when(geometryUtil.formALine(Mockito.anyListOf(Position.class))).thenReturn(false);
         target.getPrediction(solarSystem,0);
         assertFalse(target.meetsConditions(solarSystem,0));

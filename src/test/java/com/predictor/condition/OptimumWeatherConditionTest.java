@@ -39,7 +39,7 @@ public class OptimumWeatherConditionTest {
     @BeforeClass
     private void init(){
         initMocks(this);
-        solarSystem = new SolarSystem(newArrayList(VULCANO, BETASOID, FERENGI),new Sun());
+        solarSystem = new SolarSystem();
     }
 
     @Test

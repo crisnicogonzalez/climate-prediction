@@ -1,15 +1,22 @@
 package com.predictor.universe;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
 import java.util.List;
 
+import static com.google.common.collect.Lists.newArrayList;
+
+@Component
 public class SolarSystem {
 
     private List<Planet> planets;
     private Sun sun;
 
-    public SolarSystem(List<Planet> planets, Sun sun) {
-        this.planets = planets;
-        this.sun = sun;
+    public SolarSystem() {
+        this.planets = newArrayList(Planet.FERENGI,Planet.BETASOID,Planet.VULCANO);
+        this.sun = new Sun();
     }
 
     public List<Planet> getPlanets() {

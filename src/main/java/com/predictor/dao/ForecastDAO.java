@@ -1,7 +1,7 @@
 package com.predictor.dao;
 
 
-import com.predictor.dao.entity.ForecastPrediction;
+import com.predictor.dao.entity.Forecast;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,11 +19,11 @@ import static org.hibernate.criterion.Restrictions.eq;
 
 @Transactional
 @Repository
-public class ForecastPredictionDAO{
+public class ForecastDAO {
 
     private SessionFactory sessionFactory;
 
-    public ForecastPredictionDAO() {
+    public ForecastDAO() {
     }
 
     @Autowired
@@ -33,26 +33,26 @@ public class ForecastPredictionDAO{
     }
 
     @SuppressWarnings("unchecked")
-    public Optional<ForecastPrediction> get(long day) {
+    public Optional<Forecast> get(long day) {
         final Session session = this.sessionFactory.getCurrentSession();
-        final Criteria criteria = session.createCriteria(ForecastPrediction.class);
+        final Criteria criteria = session.createCriteria(Forecast.class);
         criteria.add(eq("day", day));
         return safeStream(criteria.list()).findAny();
     }
 
-    public Optional<ForecastPrediction> save(ForecastPrediction dayPrediction) {
+    public Optional<Forecast> save(Forecast dayPrediction) {
         final Session session = this.sessionFactory.getCurrentSession();
-        session.save(dayPrediction);
+        session.saveOrUpdate(dayPrediction);
         return Optional.ofNullable(dayPrediction);
     }
 
 
-    public void saveAll(List<ForecastPrediction> predictions){
+    public void saveAll(List<Forecast> predictions){
         final Session session = this.sessionFactory.getCurrentSession();
         predictions.forEach(session::save);
     }
 
-    public void delete(ForecastPrediction dayPrediction) {
+    public void delete(Forecast dayPrediction) {
         final Session session = this.sessionFactory.getCurrentSession();
         session.delete(dayPrediction);
     }

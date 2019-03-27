@@ -1,48 +1,61 @@
 package com.predictor.report;
 
-import com.predictor.condition.DroughtCondition;
-import com.predictor.condition.OptimumWeatherCondition;
-import com.predictor.condition.RainCondition;
-import com.predictor.condition.WeatherCondition;
-import com.predictor.prediction.Prediction;
+import com.predictor.prediction.WeatherPrediction;
+import com.predictor.weather.Weather;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 @Component
 public class ReportBuilder {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ReportBuilder.class);
 
-    private int droughtQuantity = 0;
-    private int optimumWeatherQuantity = 0;
-    private int rainQuantity = 0;
-    private int moreRainyDay = 0;
+    private long moreRainyDay = 0;
     private double currentIntensityRain = 0;
 
+    private Map<Weather,Integer> quantityOfDaysByWeather = new HashMap<>();
 
-    public void register(WeatherCondition condition, Prediction prediction){}
 
-    public void register(DroughtCondition condition, Prediction prediction){
-        droughtQuantity++;
+    /**
+     *
+     * Set default values for all Weathers
+     * */
+
+    @PostConstruct
+    public void init(){
+        newArrayList(Weather.values()).forEach(
+                w -> quantityOfDaysByWeather.put(w,0)
+        );
     }
 
-    public void register(RainCondition condition,Prediction prediction){
-        rainQuantity++;
-        if(prediction.getIntensity() > currentIntensityRain){
-            currentIntensityRain = prediction.getIntensity();
-            moreRainyDay = 0;
+
+    public void register(WeatherPrediction weatherPrediction, long day){
+        final Weather weather = weatherPrediction.getWeather();
+        final int currentValue = quantityOfDaysByWeather.get(weather);
+        quantityOfDaysByWeather.put(weather,currentValue+1);
+
+        if(Weather.RAIN.equals(weather)){
+            if(weatherPrediction.getIntensity() > currentIntensityRain){
+                currentIntensityRain = weatherPrediction.getIntensity();
+                moreRainyDay = day;
+            }
         }
     }
 
-    public void register(OptimumWeatherCondition condition,Prediction prediction){
-        optimumWeatherQuantity++;
-    }
-
-    public Report doReport(){
-        Report report = new Report();
-        report.setDroughtQuantity(this.droughtQuantity);
-        report.setOptimumWeatherQuantity(this.optimumWeatherQuantity);
-        report.setRainQuantity(this.rainQuantity);
-        report.setMoreRainDay(this.moreRainyDay);
-        return report;
+    public void showReport(){
+        LOGGER.info("Resultado final del sistema de prediccion de clima");
+        LOGGER.info("Dias con estado optimo   =  {}",this.quantityOfDaysByWeather.get(Weather.OPTIMUM));
+        LOGGER.info("Dias con estado lluvioso =  {}",this.quantityOfDaysByWeather.get(Weather.RAIN));
+        LOGGER.info("Dia mas lluvioso         =  {}",this.moreRainyDay);
+        LOGGER.info("Dias con sequia          =  {}",this.quantityOfDaysByWeather.get(Weather.DROUGHT));
+        LOGGER.info("Dias sin predecir        =  {}",this.quantityOfDaysByWeather.get(Weather.UNKNOWN));
     }
 
 

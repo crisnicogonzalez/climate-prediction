@@ -1,6 +1,6 @@
 package com.predictor.condition;
 
-import com.predictor.prediction.Prediction;
+import com.predictor.prediction.WeatherPrediction;
 import com.predictor.util.GeometryUtil;
 import com.predictor.universe.Planet;
 import com.predictor.universe.Position;
@@ -38,7 +38,7 @@ public class RainCondition extends WeatherCondition {
     @Override
     public boolean meetsConditions(SolarSystem system,int day) {
 
-        LOGGER.info("Calculate if day {} meets conditions",day);
+        LOGGER.debug("Calculate if day {} meets conditions",day);
 
         final List<Planet> planets = system.getPlanets();
         final Sun sun = system.getSun();
@@ -51,18 +51,20 @@ public class RainCondition extends WeatherCondition {
 
         final boolean planetsFormATriangle = geometryUtil.formATriangle(p1,p2,p3);
         final boolean sunIsInsideOfTriangle = geometryUtil.pointInsideOfTriangle(p1,p2,p3,sun.getPosition());
+
+        LOGGER.debug("planets form a triangle {} and sunIsInsideOfTriangle {}",planetsFormATriangle,sunIsInsideOfTriangle);
         return  planetsFormATriangle && sunIsInsideOfTriangle;
     }
 
     @Override
-    public Prediction getPrediction(SolarSystem system,int day){
+    public WeatherPrediction getPrediction(SolarSystem system, int day){
         final List<Planet> planets = system.getPlanets();
-        final List<Position> planetsPositions = planets.stream().map(Planet::getPosition).collect(Collectors.toList());
+        final List<Position> planetsPositions = planets.stream().map(p -> p.getPositionForDay(day)).collect(Collectors.toList());
 
         final Position p1 = planetsPositions.get(0);
         final Position p2 = planetsPositions.get(1);
         final Position p3 = planetsPositions.get(2);
-        return new Prediction(Weather.RAIN,this.calculateIntensity(p1,p2,p3));
+        return new WeatherPrediction(Weather.RAIN,this.calculateIntensity(p1,p2,p3));
     }
 
 

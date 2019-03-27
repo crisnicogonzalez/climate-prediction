@@ -1,6 +1,6 @@
 package com.predictor.condition;
 
-import com.predictor.prediction.Prediction;
+import com.predictor.prediction.WeatherPrediction;
 import com.predictor.util.GeometryUtil;
 import com.predictor.weather.Weather;
 import com.predictor.universe.Planet;
@@ -36,7 +36,7 @@ public class OptimumWeatherCondition extends WeatherCondition {
     @Override
     public boolean meetsConditions(SolarSystem system,int day) {
 
-        LOGGER.info("Calculate if day {} meets conditions",day);
+        LOGGER.debug("Calculate if day {} meets conditions",day);
 
         final Sun sun = system.getSun();
         final List<Planet> planets = system.getPlanets();
@@ -50,8 +50,8 @@ public class OptimumWeatherCondition extends WeatherCondition {
     }
 
     @Override
-    public Prediction getPrediction(SolarSystem system,int day) {
-        return new Prediction(Weather.OPTIMUM);
+    public WeatherPrediction getPrediction(SolarSystem system, int day) {
+        return new WeatherPrediction(Weather.OPTIMUM);
     }
 
 

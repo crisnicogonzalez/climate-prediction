@@ -4,8 +4,8 @@ import com.predictor.weather.Weather;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "forecast_prediction")
-public class ForecastPrediction {
+@Table(name = "forecast")
+public class Forecast {
 
     @Id
     @Column(name="day")
@@ -17,10 +17,10 @@ public class ForecastPrediction {
 
 
 
-    public ForecastPrediction() {
+    public Forecast() {
     }
 
-    public ForecastPrediction(long day, Weather weather) {
+    public Forecast(long day, Weather weather) {
         this.day = day;
         this.weather = weather;
     }
