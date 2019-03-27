@@ -18,7 +18,6 @@ public class PredictorApplication {
 	private static final int DEFAULT_PORT = 8081;
 
 	public static void main(String[] args) {
-		LOGGER.info("Starting application ...");
 		try{
 			final DispatcherServlet dispatcherServlet = new DispatcherServlet();
 			dispatcherServlet.setContextConfigLocation("classpath:application-context.xml");
@@ -27,11 +26,12 @@ public class PredictorApplication {
 			handler.addServlet(new ServletHolder(dispatcherServlet), APP_PATH_NAME);
 			handler.setResourceBase("src/main/resources");
 			final Integer port = args.length >= 1 && isNotBlank(args[0]) ? Integer.valueOf(args[0]) : DEFAULT_PORT;
+			LOGGER.info("Starting application on PORT {}",port);
 			final Server server = new Server(port);
 			server.setHandler(handler);
 
 			server.start();
-			LOGGER.info("Application started...");
+			LOGGER.info("Application started on PORT {}");
 			server.join();
 			LOGGER.info("Application was shutdown!");
 
