@@ -14,7 +14,7 @@ public class PredictorApplication {
 
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(PredictorApplication.class);
-	private static final String APP_PATH_NAME = "/predictor-system/*";
+	private static final String APP_PATH_NAME = "/illapa/*";
 	private static final int DEFAULT_PORT = 8081;
 
 	public static void main(String[] args) {
