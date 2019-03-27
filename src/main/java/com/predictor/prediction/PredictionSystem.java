@@ -24,6 +24,8 @@ public class PredictionSystem {
     private Predictor predictor;
     private SolarSystem solarSystem;
 
+    private static final int DAYS_TO_PREDICT = 10000;
+
 
     @Autowired
     public PredictionSystem(Predictor predictor, ReportBuilder builder, ForecastDAO forecastDAO, SolarSystem solarSystem) {
@@ -36,7 +38,7 @@ public class PredictionSystem {
 
     @PostConstruct
     public void init(){
-        this.predictWeatherForDays(365);
+        this.predictWeatherForDays(DAYS_TO_PREDICT);
     }
 
     @Async
