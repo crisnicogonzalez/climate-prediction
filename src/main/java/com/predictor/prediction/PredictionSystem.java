@@ -1,7 +1,8 @@
 package com.predictor.prediction;
 
-import com.predictor.condition.RainCondition;
 import com.predictor.condition.WeatherCondition;
+import com.predictor.dao.entity.ForecastPrediction;
+import com.predictor.dao.ForecastPredictionDAO;
 import com.predictor.report.Report;
 import com.predictor.report.ReportBuilder;
 import com.predictor.universe.Planet;
@@ -28,6 +29,8 @@ public class PredictionSystem {
     private static final Logger LOGGER = LoggerFactory.getLogger(PredictionSystem.class);
     @Autowired
     private ReportBuilder builder;
+    @Autowired
+    private ForecastPredictionDAO forecastPredictionDAO;
 
 
 
@@ -47,6 +50,7 @@ public class PredictionSystem {
             final Prediction prediction = predictionFulfilled.getPrediction(solarSystem,day);
             LOGGER.info("For day {} the weather applied is {}",day,prediction.getWeather());
             builder.register(predictionFulfilled,prediction);
+            forecastPredictionDAO.save(new ForecastPrediction(day,prediction.getWeather(),prediction.getIntensity()));
         }
         final Report report = builder.doReport();
     }

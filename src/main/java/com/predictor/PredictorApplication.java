@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import static java.util.EnumSet.of;
 import static org.eclipse.jetty.util.StringUtil.isNotBlank;
 
 public class PredictorApplication {

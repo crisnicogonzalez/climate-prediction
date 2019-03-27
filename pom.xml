@@ -6,14 +6,17 @@
 	<artifactId>predictor</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<name>predictor</name>
-	<packaging>pom</packaging>
+	<packaging>jar</packaging>
 	<description>Resolución de ejercicio de mercado libre</description>
 
 	<properties>
 		<java.version>1.8</java.version>
 		<jetty-server.version>9.4.15.v20190215</jetty-server.version>
-		<springframework.version>4.3.22.RELEASE</springframework.version>
+		<springframework.version>4.3.12.RELEASE</springframework.version>
 		<maven.assembly.plugin.version>2.4</maven.assembly.plugin.version>
+		<google.guava.version>27.0.1-jre</google.guava.version>
+		<version.hibernate>4.3.11.Final</version.hibernate>
+		<spring.orm.version>4.3.12.RELEASE</spring.orm.version>
 	</properties>
 
 	<dependencies>
@@ -27,7 +30,7 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>27.0.1-jre</version>
+			<version>${google.guava.version}</version>
 		</dependency>
 
 		<dependency>
@@ -90,13 +93,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>4.3.7.Final</version>
-		</dependency>
-
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.15</version>
+			<version>${version.hibernate}</version>
 		</dependency>
 
 		<dependency>
@@ -107,10 +104,35 @@
 		</dependency>
 
 		<dependency>
-			<groupId>postgresql</groupId>
+			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>9.1-901-1.jdbc4</version>
+			<version>9.3-1100-jdbc41</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.orm.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-dbcp</artifactId>
+			<version>9.0.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.196</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.1-api</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+
 
 
 
@@ -162,10 +184,4 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-
-
-	<modules>
-		<module>domain</module>
-		<module>service</module>
-	</modules>
 </project>
