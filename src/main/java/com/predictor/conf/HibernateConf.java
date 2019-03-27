@@ -2,8 +2,10 @@ package com.predictor.conf;
 
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -14,18 +16,18 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
+@PropertySource(ignoreResourceNotFound=true,value="classpath:env/app.properties")
 public class HibernateConf {
 
 
-    //@Value("${meli.predictor.sql.url}")
-    private String url = "jdbc:postgresql://localhost:5432/meli_predictor";
-
-    //@Value("${meli.predictor.sql.username}")
-    private String userName = "meli_predictor";
-    //@Value("${meli.predictor.sql.pass}")
-    private String pass = "1234";
-    //@Value("${meli.predictor.sql.driver.class.name}")
-    private String driverClassName = "org.postgresql.Driver";
+    @Value("${meli.predictor.sql.url}")
+    private String url;
+    @Value("${meli.predictor.sql.username}")
+    private String userName;
+    @Value("${meli.predictor.sql.pass}")
+    private String pass;
+    @Value("${meli.predictor.sql.driver.class.name}")
+    private String driverClassName;
 
     @Bean(name = "sessionFactory")
     public LocalSessionFactoryBean sessionFactory() {
