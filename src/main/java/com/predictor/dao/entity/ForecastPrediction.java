@@ -20,7 +20,7 @@ public class ForecastPrediction {
     public ForecastPrediction() {
     }
 
-    public ForecastPrediction(long day, Weather weather, double intensity) {
+    public ForecastPrediction(long day, Weather weather) {
         this.day = day;
         this.weather = weather;
     }

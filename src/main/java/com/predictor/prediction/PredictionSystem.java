@@ -50,7 +50,7 @@ public class PredictionSystem {
             final Prediction prediction = predictionFulfilled.getPrediction(solarSystem,day);
             LOGGER.info("For day {} the weather applied is {}",day,prediction.getWeather());
             builder.register(predictionFulfilled,prediction);
-            forecastPredictionDAO.save(new ForecastPrediction(day,prediction.getWeather(),prediction.getIntensity()));
+            forecastPredictionDAO.save(new ForecastPrediction(day,prediction.getWeather()));
         }
         final Report report = builder.doReport();
     }
