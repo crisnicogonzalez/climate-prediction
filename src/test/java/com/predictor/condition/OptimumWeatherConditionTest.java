@@ -15,11 +15,7 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
-import static com.predictor.universe.Planet.BETASOID;
-import static com.predictor.universe.Planet.FERENGI;
-import static com.predictor.universe.Planet.VULCANO;
 import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 import static org.testng.Assert.*;
@@ -45,9 +41,9 @@ public class OptimumWeatherConditionTest {
     @Test
     public void testMeetsConditionsShouldReturnTrueWhenPlanetsAreAlignedButTheSunIsNot() {
 
-        final Planet planetOne = VULCANO;
-        final Planet planetTwo = FERENGI;
-        final Planet planetThree = BETASOID;
+        final Planet planetOne = new Planet();
+        final Planet planetTwo = new Planet();
+        final Planet planetThree = new Planet();
         final Sun sun = new Sun();
 
         final Position p1 = new Position(1,0);

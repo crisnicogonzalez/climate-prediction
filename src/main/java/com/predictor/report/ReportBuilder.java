@@ -35,6 +35,10 @@ public class ReportBuilder {
         );
     }
 
+    public void reset(){
+        this.init();
+    }
+
     /**
      * this method count frequency of every weather
      * @param day is a valid day that is, day > 0
@@ -55,7 +59,10 @@ public class ReportBuilder {
             }
         }
     }
-
+    /**
+     *
+     * Logging the report
+     * */
     public void showReport(){
         LOGGER.info("Resultado final del sistema de prediccion de clima");
         LOGGER.info("Dias con estado optimo   =  {}",this.quantityOfDaysByWeather.get(Weather.OPTIMUM));
@@ -66,7 +73,13 @@ public class ReportBuilder {
     }
 
 
+    /**  This method is for testing*/
+    public Map<Weather, Integer> getQuantityOfDaysByWeather() {
+        return quantityOfDaysByWeather;
+    }
 
-
-
+    /**  This method is for testing*/
+    public long getMoreRainyDay() {
+        return moreRainyDay;
+    }
 }

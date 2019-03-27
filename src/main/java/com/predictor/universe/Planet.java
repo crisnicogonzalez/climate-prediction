@@ -4,15 +4,7 @@ package com.predictor.universe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public enum Planet {
-
-    VULCANO(-1,500),
-    FERENGI(-3,2000),
-    BETASOID(5,1000);
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(Planet.class);
-
-
+public class Planet {
 
     /*angularVelocity degree for day*/
     private Integer angularVelocity;
@@ -28,6 +20,8 @@ public enum Planet {
         radio = distanceSun;
     }
 
+    public Planet() {
+    }
 
     /**
      * the angular velocity is degree/day then for calculate the current position

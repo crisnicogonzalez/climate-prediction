@@ -34,7 +34,7 @@ public class DroughtConditionTest {
     private void init(){
         initMocks(this);
         sun = new Sun();
-        planes = newArrayList(Planet.VULCANO,Planet.BETASOID,Planet.FERENGI);
+        planes = newArrayList(new Planet(),new Planet(),new Planet());
     }
 
 

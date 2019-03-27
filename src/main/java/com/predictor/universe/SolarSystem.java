@@ -19,8 +19,16 @@ public class SolarSystem {
     private Sun sun;
 
     public SolarSystem() {
-        this.planets = newArrayList(Planet.FERENGI,Planet.BETASOID,Planet.VULCANO);
+        final Planet ferengi = new Planet(-3,2000);
+        final Planet vulcano = new Planet(-1,500);
+        final Planet betasoid = new Planet(5,1000);
+        this.planets = newArrayList(ferengi,vulcano,betasoid);
         this.sun = new Sun();
+    }
+
+    public SolarSystem(List<Planet> planets, Sun sun) {
+        this.planets = planets;
+        this.sun = sun;
     }
 
     public List<Planet> getPlanets() {

@@ -18,9 +18,43 @@
 		<version.hibernate>4.3.11.Final</version.hibernate>
 		<spring.orm.version>4.3.12.RELEASE</spring.orm.version>
 		<jcabi.aspects.version>0.22.6</jcabi.aspects.version>
+		<org.powermock.version>1.6.2</org.powermock.version>
 	</properties>
 
+
 	<dependencies>
+
+		<!--Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${springframework.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>6.14.3</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.9.5</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!--Test -->
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
@@ -34,12 +68,6 @@
 			<version>${google.guava.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>6.14.3</version>
-			<scope>test</scope>
-		</dependency>
 
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
@@ -77,13 +105,7 @@
 			<version>1.7.26</version>
 		</dependency>
 
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.10</version>
-            <scope>test</scope>
-        </dependency>
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
 
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -97,12 +119,6 @@
 			<version>${version.hibernate}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
-			<version>1.9.5</version>
-			<scope>test</scope>
-		</dependency>
 
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -139,9 +155,6 @@
 			<artifactId>jcabi-aspects</artifactId>
 			<version>${jcabi.aspects.version}</version>
 		</dependency>
-
-
-
 
 	</dependencies>
 
