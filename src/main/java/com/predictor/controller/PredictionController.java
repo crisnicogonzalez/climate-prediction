@@ -1,6 +1,7 @@
 package com.predictor.controller;
 
 
+import com.jcabi.aspects.Loggable;
 import com.predictor.dao.entity.ForecastPrediction;
 import com.predictor.dao.ForecastPredictionDAO;
 import com.predictor.request.ForecastPredictionRequestDTO;
@@ -19,8 +20,9 @@ public class PredictionController {
 
     @RequestMapping(value = "clima",method = RequestMethod.GET)
     @ResponseBody
+    @Loggable(value = 2)
     public ForecastPrediction getforecast(@ModelAttribute ForecastPredictionRequestDTO query){
-        LOGGER.info("Request received for day {}",query.getDia());
+        LOGGER.info("GET /clima?dia={}",query.getDia());
         return forecastPredictionDAO.get(query.getDia()).orElseGet(ForecastPrediction::new);
     }
 }

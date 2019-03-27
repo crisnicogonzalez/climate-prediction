@@ -1,16 +1,16 @@
 package com.predictor.request;
 
 public class ForecastPredictionRequestDTO {
-    private int dia;
+    private long dia;
 
     public ForecastPredictionRequestDTO() {
     }
 
-    public int getDia() {
+    public long getDia() {
         return dia;
     }
 
-    public void setDia(int dia) {
+    public void setDia(long dia) {
         this.dia = dia;
     }
 }

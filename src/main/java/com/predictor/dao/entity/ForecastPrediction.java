@@ -9,7 +9,7 @@ public class ForecastPrediction {
 
     @Id
     @Column(name="day")
-    private int day;
+    private long day;
 
     @Column(name="weather")
     @Enumerated(EnumType.STRING)
@@ -20,16 +20,16 @@ public class ForecastPrediction {
     public ForecastPrediction() {
     }
 
-    public ForecastPrediction(int day, Weather weather, double intensity) {
+    public ForecastPrediction(long day, Weather weather, double intensity) {
         this.day = day;
         this.weather = weather;
     }
 
-    public int getDay() {
+    public long getDay() {
         return day;
     }
 
-    public void setDay(int day) {
+    public void setDay(long day) {
         this.day = day;
     }
 
