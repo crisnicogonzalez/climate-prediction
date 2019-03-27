@@ -18,7 +18,6 @@ public class Predictor {
     private List<WeatherCondition> conditions;
 
     private static final String NO_CONDITION_WAS_MET_MSG = "no condition was met";
-    private static final WeatherCondition DEFAULT_CONDITION = new NoOneCondition();
 
     @Autowired
     public Predictor(List<WeatherCondition> conditions) {

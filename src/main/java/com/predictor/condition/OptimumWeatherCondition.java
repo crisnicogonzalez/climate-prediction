@@ -31,7 +31,8 @@ public class OptimumWeatherCondition extends WeatherCondition {
     }
 
     /**
-     * This condition is fulfilled when the planets are aligned but the sun is not aligned with them
+     * This condition is fulfilled when the planets are aligned but the sun is not aligned with them.
+     * The planets position form a straight line but the sun is not in that straight line
      * */
     @Override
     public boolean meetsConditions(SolarSystem system,int day) {

@@ -35,8 +35,15 @@ public class ReportBuilder {
         );
     }
 
-
+    /**
+     * this method count frequency of every weather
+     * @param day is a valid day that is, day > 0
+     * @param weatherPrediction is the prediction for the day
+     * */
     public void register(WeatherPrediction weatherPrediction, long day){
+
+
+
         final Weather weather = weatherPrediction.getWeather();
         final int currentValue = quantityOfDaysByWeather.get(weather);
         quantityOfDaysByWeather.put(weather,currentValue+1);

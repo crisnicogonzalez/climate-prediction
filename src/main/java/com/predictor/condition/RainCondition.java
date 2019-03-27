@@ -57,6 +57,10 @@ public class RainCondition extends WeatherCondition {
     }
 
     @Override
+
+    /**For RainCondition, is necessary calculate the intensity.
+     * For that calculate the perimeter of the triangle
+     */
     public WeatherPrediction getPrediction(SolarSystem system, int day){
         final List<Planet> planets = system.getPlanets();
         final List<Position> planetsPositions = planets.stream().map(p -> p.getPositionForDay(day)).collect(Collectors.toList());

@@ -14,7 +14,7 @@ public enum Planet {
 
 
 
-    /*angularVelocity radians for day*/
+    /*angularVelocity degree for day*/
     private Integer angularVelocity;
     /*initial position*/
     private Position position;
@@ -28,6 +28,11 @@ public enum Planet {
         radio = distanceSun;
     }
 
+
+    /**
+     * the angular velocity is degree/day then for calculate the current position
+     * apply the theory of trig fuctions
+    * */
 
     public Position getPositionForDay(int day){
         final int currentAngle = this.angularVelocity*day;

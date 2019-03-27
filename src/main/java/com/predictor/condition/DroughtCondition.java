@@ -29,7 +29,8 @@ public class DroughtCondition extends WeatherCondition {
     }
 
     /**
-     * This condition is fulfilled when both the planets and the sun are aligned
+     * This condition is fulfilled when both the planets and the sun are
+     * aligned in a straight line
      */
     @Override
     public boolean meetsConditions(SolarSystem system,int day) {

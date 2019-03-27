@@ -8,6 +8,10 @@ import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
 
+
+
+
+/**For the solution SolarSystem is stateless*/
 @Component
 public class SolarSystem {
 
