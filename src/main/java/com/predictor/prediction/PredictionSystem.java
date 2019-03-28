@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 import static com.google.common.collect.Lists.newArrayList;
+import static java.lang.System.currentTimeMillis;
 
 
 @Component
@@ -44,10 +45,12 @@ public class PredictionSystem {
 
     @Async
     public void predictWeatherForDays(Integer quantityOfDays){
+        long executionTime = currentTimeMillis();
+        LOGGER.info("Init calculate predictions");
         for (int day = 1 ; day <= quantityOfDays; day++){
             try{
                 final WeatherPrediction weatherPredicted = predictor.predict(solarSystem,day);
-                LOGGER.info("For day {} the weather applied is {}",day, weatherPredicted.getWeather());
+                LOGGER.debug("For day {} the weather applied is {}",day, weatherPredicted.getWeather());
                 builder.register(weatherPredicted,day);
                 forecastDAO.save(new Forecast(day, weatherPredicted.getWeather()));
             }catch (Exception e){
@@ -55,6 +58,7 @@ public class PredictionSystem {
             }
 
         }
+        LOGGER.info("Calculate predictions finished in [{}] ms ",currentTimeMillis() - executionTime);
         builder.showReport();
     }
 }

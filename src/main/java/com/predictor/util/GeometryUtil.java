@@ -89,6 +89,12 @@ public class GeometryUtil {
 
     }
 
+
+    /**
+     *
+     calculate the cross product between 3 points, that is 2 vectors
+     *
+     * */
     private boolean calculateOrientation(Position p1,Position p2,Position p3){
         final double p1x_P3x = p1.getX() - p3.getX();
         final double p1y_P3y = p1.getY() - p3.getY();
@@ -103,6 +109,12 @@ public class GeometryUtil {
     }
 
 
+
+
+    /**
+     * Calculate triangle perimeter's
+     *
+     * */
     public double calculatePerimeterOfTriangle(Position p1,Position p2,Position p3){
         if(!this.formATriangle(p1,p2,p3)){
             LOGGER.error(CANNOT_CALCULATE_PERIMETER_MSG,p1,p2,p3);
