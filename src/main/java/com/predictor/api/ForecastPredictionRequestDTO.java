@@ -1,4 +1,4 @@
-package com.predictor.request;
+package com.predictor.api;
 
 public class ForecastPredictionRequestDTO {
     private long dia;
